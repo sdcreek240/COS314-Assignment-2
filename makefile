@@ -9,3 +9,7 @@ run: all
 clean:
 	rm -rf ./executable/*.class
 	clear
+
+cleanData:
+	rm -rf ./data/*
+	7z x "Knapsack Instances.7z" -o./data -y
