@@ -1,7 +1,7 @@
 //Each file with respective name | total objects | weight capacity
 import java.util.*;
 
-public class File {
+public class KnapsackFile {
 
     //Wieght first then value
     private class Thingies {
@@ -19,6 +19,7 @@ public class File {
         public double getValue() {return this.value;}
         
     }//END_Thingies
+    //==============================
 
     String name;
     int totalObjects;
@@ -26,7 +27,7 @@ public class File {
 
     Thingies[] objects; int currItems=0;
 
-    File(String n, int tO, int wC) {
+    KnapsackFile(String n, int tO, int wC) {
 
         this.name = n;
         this.totalObjects = tO;
@@ -52,5 +53,5 @@ public class File {
         return false;
     }//END_appendObject
 
-}//END_file
+}//END_KnapsackFile
 
