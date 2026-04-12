@@ -15,7 +15,7 @@ public class Main {
         rand = new Random(seed);
 
         DataProcessor dp = new DataProcessor();
-        DataProcessor.loadAllFiles();
+        dp.loadAllFiles();
 
         for (KnapsackFile kf : dp.getKnapsackFiles()){
             System.out.println("File: " + kf.getName());

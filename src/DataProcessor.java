@@ -10,8 +10,13 @@ public class DataProcessor {
 
     public void loadAllFiles() {
 
-        dataDir = new File("../data");
+        dataDir = new File("./data");
         File[] allF = dataDir.listFiles();
+
+        if (allF == null) {
+            System.err.println("Error: data directory not found at: " + dataDir.getAbsolutePath());
+            return;
+        }
 
         for (File f:allF){
 
