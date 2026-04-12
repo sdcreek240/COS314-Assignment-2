@@ -1,7 +1,8 @@
 public class IteratedLocalSearch {
 
-    public KnapsackFile solve(KnapsackFile kf) {
-
-        return new KnapsackFile("empty",0,0);
+    public Solution solve(KnapsackFile kf) {
+        // TODO: implement ILS
+        return null;
     }
+
 }//END_IteratedLocalSearch

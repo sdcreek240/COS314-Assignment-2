@@ -4,7 +4,8 @@ import java.util.*;
 public class KnapsackFile {
 
     //Wieght first then value
-    private class Thingies {
+    
+    public class Thingies {
 
         private final double weight;
         private final double value;
@@ -41,6 +42,7 @@ public class KnapsackFile {
     public int getTotalObjects() {return totalObjects;}
     public int getWeightCapacity() {return weightCapacity;}
     public Thingies[] getObjects() {return objects;}
+    public Thingies getObject(int i) { return i<totalObjects? objects[i] : null; }
 
     //Mutators
     public boolean appendObject(double weight, double value){

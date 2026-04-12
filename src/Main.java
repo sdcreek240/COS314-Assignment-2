@@ -1,59 +1,85 @@
 import java.util.Scanner;
 import java.util.Random;
+import java.util.List;
 
 public class Main {
 
-    //Global seed, use main.seed in other classes to ensure same seed used
     public static Random rand;
 
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter seed value: ");
-        long seed = scanner.nextLong();
-        rand = new Random(seed);
-
         DataProcessor dp = new DataProcessor();
         dp.loadAllFiles();
+        List<KnapsackFile> files = dp.getKnapsackFiles();
 
-        for (KnapsackFile kf : dp.getKnapsackFiles()){
-            System.out.println("File: " + kf.getName());
-            System.out.println("Items: " + kf.getTotalObjects());
-            System.out.println("Capacity: " + kf.getWeightCapacity());
-        }//END_kf
+        boolean running = true;
 
-        // === SELECT ALGORITHM ===
-        // System.out.println("Choose algorithm:");
-        // System.out.println("1 - Genetic Algorithm (GA)");
-        // System.out.println("2 - Iterated Local Search (ILS)");
-        // int choice = scanner.nextInt();
+        while (running) {
 
-        // long startTime = System.currentTimeMillis();
+            // seed
+            System.out.print("\nEnter seed value: ");
+            long seed = scanner.nextLong();
+            //Add some to make seed 0 when seed isnt entered
+            rand = new Random(seed);
 
-        // Solution bestSolution = null;
+            // select file
+            System.out.println("\nAvailable knapsack instances:");
+            for (int i = 0; i < files.size(); i++) {
+                System.out.println("  [" + i + "] " + files.get(i).getName());
+            }
+            System.out.print("Select instance (0-" + (files.size() - 1) + "): ");
+            int fileIndex = scanner.nextInt();
 
-        // if (choice == 1) {//GA
-        //     GeneticAlgorithm ga = new GeneticAlgorithm();
-        //     bestSolution = ga.solve(instance);
+            if (fileIndex < 0 || fileIndex >= files.size()) {
+                System.out.println("Invalid selection. Please try again.");
+                continue;
+            }
 
-        // } else if (choice == 2) {//ILS
-        //     IteratedLocalSearch ils = new IteratedLocalSearch();
-        //     bestSolution = ils.solve(instance);
+            KnapsackFile instance = files.get(fileIndex);
+            System.out.println("Selected: " + instance.getName());
 
-        // } else {
-        //     System.out.println("Invalid choice.");
-        //     System.exit(0);
-        // }
+            // algo selection
+            System.out.println("\nChoose algorithm:");
+            System.out.println("  [1] Genetic Algorithm (GA)");
+            System.out.println("  [2] Iterated Local Search (ILS)");
+            System.out.print("Choice: ");
+            int choice = scanner.nextInt();
 
-        // long endTime = System.currentTimeMillis();
+            // === RUN ===
+            long startTime = System.currentTimeMillis();
+            Solution bestSolution = null;
 
-        // //out
-        // System.out.println("\n=== RESULT ===");
-        // System.out.println("Best value: " + bestSolution.getValue());
-        // System.out.println("Weight: " + bestSolution.getWeight());
-        // System.out.println("Runtime: " + (endTime - startTime) / 1000.0 + " seconds");
+            if (choice == 1) {
+                GeneticAlgorithm ga = new GeneticAlgorithm();
+                bestSolution = ga.solve(instance);
+            } else if (choice == 2) {
+                IteratedLocalSearch ils = new IteratedLocalSearch();
+                bestSolution = ils.solve(instance);
+            } else {
+                System.out.println("Invalid algorithm choice.");
+                // fall through to "run again?" prompt
+            }
 
-        // scanner.close();
+            long endTime = System.currentTimeMillis();
+
+            //output
+            if (bestSolution != null) {
+                System.out.println("\n=== RESULT ===");
+                System.out.println("Instance : " + instance.getName());
+                System.out.println("Best value: " + bestSolution.getValue());
+                System.out.println("Weight   : " + bestSolution.getWeight() + " / " + instance.getWeightCapacity());
+                System.out.printf("Runtime  : %.3f seconds%n", (endTime - startTime) / 1000.0);
+            }
+
+            // === RUN AGAIN? ===
+            System.out.print("\nRun again with different seed/instance? (y/n): ");
+            String again = scanner.next();
+            running = again.equalsIgnoreCase("y");
+        }
+
+        System.out.println("Goodbye.");
+        scanner.close();
     }
 }
