@@ -31,7 +31,7 @@ public class DataProcessor {
             String sLine = br.readLine().trim();
             String[] p = sLine.split(" ");
 
-            int tO = Integer.parseInt(p[0])
+            int tO = Integer.parseInt(p[0]);
             int wC = Integer.parseInt(p[1]);
 
             KnapsackFile kf = new KnapsackFile(f.getName(), tO, wC);

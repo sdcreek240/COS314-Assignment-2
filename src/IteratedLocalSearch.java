@@ -1,7 +1,7 @@
 public class IteratedLocalSearch {
 
-    public Solution solve(KnapsackInstance instance) {
+    public KnapsackFile solve(KnapsackFile kf) {
 
-        return new Solution();
+        return new KnapsackFile();
     }
 }//END_IteratedLocalSearch

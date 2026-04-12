@@ -1,6 +1,6 @@
 public class GeneticAlgorithm {
 
-    public Solution solve(KnapsackInstance instance) {
-        return new Solution();
+    public KnapsackFile solve(KnapsackFile kf) {
+        return new KnapsackFile();
     }
 }//END_GeneticAlgorithm
