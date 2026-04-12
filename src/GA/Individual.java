@@ -12,9 +12,9 @@ public class Individual {
 
     private KnapsackFile kf;
 
-    public Individual(int iLength, KnapsackFile kf) {
+    public Individual(KnapsackFile kf) {
 
-        this.iLength = iLength;
+        this.iLength = kf.getTotalObjects();
         this.kf = kf;
 
         this.genes = new int[iLength];
