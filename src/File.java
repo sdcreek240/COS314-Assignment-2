@@ -1,5 +1,56 @@
 //Each file with respective name | total objects | weight capacity
+import java.util.*;
+
 public class File {
 
+    //Wieght first then value
+    private class Thingies {
+
+        private final double weight;
+        private final double value;
+
+        public Thingies(double w, double v){
+            this.weight=w;
+            this.value=v; 
+        }//END_constr
+
+        //Accessors
+        public double getWeight() {return this.weight;}
+        public double getValue() {return this.value;}
+        
+    }//END_Thingies
+
+    String name;
+    int totalObjects;
+    int weightCapacity;
+
+    Thingies[] objects; int currItems=0;
+
+    File(String n, int tO, int wC) {
+
+        this.name = n;
+        this.totalObjects = tO;
+        this.weightCapacity = wC;
+        this.objects = new Thingies[this.totalObjects];
+    }//END_constructor
+
+
+    //Accessors
+    public String getName() {return name;}
+    public int getTotalObjects() {return totalObjects;}
+    public int getWeightCapacity() {return weightCapacity;}
+    public Thingies[] getObjects() {return objects;}
+
+    //Mutators
+    public boolean appendObject(double weight, double value){
+
+        if (currItems<totalObjects) {
+            
+            objects[currItems++] = new Thingies(weight, value); 
+            return true;
+        }
+        return false;
+    }//END_appendObject
 
 }//END_file
+
