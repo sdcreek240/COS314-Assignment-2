@@ -49,7 +49,7 @@ public class Main {
 
             // === RUN ===
             long startTime = System.currentTimeMillis();
-            Solution bestSolution = null;
+            Individual bestSolution = null;
 
             if (choice == 1) {
                 GeneticAlgorithm ga = new GeneticAlgorithm();

@@ -1,6 +1,6 @@
 public class IteratedLocalSearch {
 
-    public Solution solve(KnapsackFile kf) {
+    public Individual solve(KnapsackFile kf) {
         // TODO: implement ILS
         return null;
     }

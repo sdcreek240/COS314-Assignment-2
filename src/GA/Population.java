@@ -11,7 +11,7 @@ public class Population {
         this.iPopSize = popSize;
         this.individuals = new Individual[iPopSize];
 
-        for (int i=0; i<iPopSize; i++){ individuals[i] = new Individual(kf) }//END_i
+        for (int i=0; i<iPopSize; i++){ individuals[i] = new Individual(kf); }//END_i
     }//END_Constr
 
 

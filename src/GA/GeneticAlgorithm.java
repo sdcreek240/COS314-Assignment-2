@@ -5,7 +5,7 @@ public class GeneticAlgorithm {
 
     int[] chromo;
 
-    public Solution solve(KnapsackFile kf) {
+    public Individual solve(KnapsackFile kf) {
         // TODO: implement GA
         // this.chromo = new int[kf.getTotalObjects()];
 

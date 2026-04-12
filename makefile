@@ -1,6 +1,6 @@
 # Compile Java files into the executable directory
 all: clean
-	javac -d ./executable src/*.java
+	javac -d ./executable src/*.java src/GA/*.java
 
 # Run the program from the executable directory
 run: all

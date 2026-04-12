@@ -68,10 +68,8 @@ public class Individual {
 
             if (genes[i]==1) {
 
-                Thingies t = kf.getObject(i);
-
-                totalWeight += t.getWeight();
-                totalValue += t.getValue();
+                totalWeight += kf.getObject(i).getWeight();
+                totalValue += kf.getObject(i).getValue();
             }//END_if
         }//END_i
 
