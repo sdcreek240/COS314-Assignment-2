@@ -26,4 +26,8 @@ public class Population {
 
         return best;
     }//END_getBest
+
+
+//mutators
+    public void set(int i, Individual ind) { individuals[i] = ind; }
 }//END_Population

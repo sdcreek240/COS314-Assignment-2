@@ -31,6 +31,7 @@ public class Individual {
     public Individual(Individual other) {
  
         this.iLength      = other.iLength;
+        this.kf          = other.kf; 
         this.genes        = new int[iLength];
         this.totalValue   = other.totalValue;
         this.totalWeight  = other.totalWeight;
