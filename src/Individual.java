@@ -49,7 +49,9 @@ public class Individual {
     public double  getWeight()   { return totalWeight; }
     public boolean isFeasible()  { return feasible; }
 
-    public double getFitness() { return feasible ? totalValue : 0; }
+    public double getFitness() { return totalValue;
+
+    }
 
 //Mutators
     public void    setGene(int i, int val) { if (i>=0 && i<iLength && (val==0 || val==1)) genes[i] = val; }
@@ -74,7 +76,41 @@ public class Individual {
             }//END_if
         }//END_i
 
-        if (totalWeight<=kf.getWeightCapacity()) this.feasible = true;
+        int cap = kf.getWeightCapacity();
+        if (totalWeight>cap) {
+
+            List<Integer> itemsInKnapsack = new ArrayList<>();
+            for (int i = 0; i < iLength; i++) {
+
+                if (genes[i]==1) {
+
+                    itemsInKnapsack.add(i);
+                    
+                }
+                
+            }
+
+            //Shuffle so we drop random items (prevents bias)
+            Collections.shuffle(itemsInKnapsack,Main.rand);
+
+            for (int i = 0; i < itemsInKnapsack.size(); i++) {
+
+                int dropIndex = itemsInKnapsack.get(i);
+                //remove items from the sack
+                genes[dropIndex] = 0;
+                totalWeight -= kf.getObject(dropIndex).getWeight();
+                totalValue -= kf.getObject(dropIndex).getValue();
+
+                if (totalWeight <= cap) {
+
+                    break;
+                    
+                }
+                
+            }
+            
+        }
+        this.feasible = true;
     }//END_eval
 
     @Override
