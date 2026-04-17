@@ -63,7 +63,6 @@ public class Main {
                                       instance.getName(), "GA", seed, bestGA.getValue(), timeGA);
                 }
                 System.out.println("-".repeat(80));
-                System.out.println("* Note: Insert 'Known Optimum' values manually from your provided image.");
                 
             } 
             // === SINGLE INSTANCE MODE ===

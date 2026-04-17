@@ -48,8 +48,8 @@ public class DataProcessor {
                 if (!sLine.isEmpty()){
 
                     p = sLine.split(" ");
-                    double w = Double.parseDouble(p[0]);
-                    double v = Double.parseDouble(p[1]);
+                    double v = Double.parseDouble(p[0]);
+                    double w = Double.parseDouble(p[1]);
                     kf.appendObject(w, v);
                 }//END_Empty check
             }//END_while
