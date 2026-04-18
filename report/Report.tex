@@ -1,0 +1,139 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{amsmath}
+
+\title{COS 314 Assignment 2}
+\author{
+Jeandre Opperman 23542773 \\
+Aidan Dawson 24593542
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Genetic Algorithm}
+
+A Genetic Algorithm is a population based metaheuristic inspired by natural selection and evolution. It maintains a population of candidate solutions that evolve over generations using selection, crossover, and mutation. Fitter individuals are more likely to pass their traits, guiding the search toward optimal solutions.
+
+\subsection{Special Relevance}
+
+The 0/1 Knapsack Problem maps naturally to binary strings. GA performs strong global exploration, avoiding premature convergence and exploring multiple combinations simultaneously.
+
+\subsection{Functionality}
+
+\textbf{Representation and Initialization:}  
+Solutions are binary strings where 1 means include and 0 means exclude. Initial population is randomly generated.
+
+\textbf{Fitness and Constraint Handling:}  
+Fitness is total value. If overweight, a stochastic repair removes items randomly until feasible.
+
+\textbf{Selection:}  
+Tournament selection with moderate pressure.
+
+\textbf{Reproduction:}  
+Single-point crossover with bit-flip mutation.
+
+\textbf{Elitism:}  
+Top individuals are preserved.
+
+\subsection{Configuration}
+
+\begin{itemize}
+\item Population Size: 100
+\item Generations: 500
+\item Crossover Rate: 0.8
+\item Mutation Rate: 0.02
+\item Tournament Size: 5
+\item Elitism Count: 2
+\end{itemize}
+
+\section{Iterated Local Search}
+
+ILS is a trajectory-based metaheuristic that alternates between local search and perturbation to escape local optima.
+
+\subsection{Special Relevance}
+
+Knapsack landscapes are highly correlated. ILS exploits this with efficient local improvements and controlled exploration.
+
+\subsection{Functionality}
+
+\textbf{Initialization:}  
+Random feasible solution.
+
+\textbf{Local Search:}  
+One-bit flip improvements until local optimum.
+
+\textbf{Perturbation:}  
+Three random bit flips.
+
+\textbf{Acceptance:}  
+Strict improvement only.
+
+\subsection{Configuration}
+
+\begin{itemize}
+\item Iterations: 500
+\item Neighborhood: Single bit flip
+\item Perturbation Strength: 3
+\end{itemize}
+
+\section{Results}
+
+\begin{center}
+\begin{tabular}{lcccccc}
+\toprule
+Instance & Alg & Seed & Best & Optimum & Runtime \\
+\midrule
+f1 & ILS & 22 & 295 & 293 & 0.005 \\
+   & GA  & 22 & 293 & 293 & 0.047 \\
+f2 & ILS & 22 & 1024 & 1024 & 0.071 \\
+   & GA  & 22 & 1024 & 1024 & 0.145 \\
+f3 & ILS & 22 & 35 & 35 & 0.001 \\
+   & GA  & 22 & 35 & 35 & 0.035 \\
+f4 & ILS & 22 & 23 & 23 & 0.004 \\
+   & GA  & 22 & 23 & 23 & 0.068 \\
+f5 & ILS & 22 & 481.1 & 481.1 & 0.012 \\
+   & GA  & 22 & 481.1 & 481.1 & 0.052 \\
+f6 & ILS & 22 & 52 & 52 & 0.007 \\
+   & GA  & 22 & 52 & 52 & 0.045 \\
+f7 & ILS & 22 & 107 & 107 & 0.006 \\
+   & GA  & 22 & 107 & 107 & 0.060 \\
+f8 & ILS & 22 & 9767 & 9767 & 0.027 \\
+   & GA  & 22 & 9767 & 9767 & 0.091 \\
+f9 & ILS & 22 & 130 & 130 & 0.005 \\
+   & GA  & 22 & 130 & 130 & 0.059 \\
+f10 & ILS & 22 & 1025 & 1025 & 0.018 \\
+    & GA  & 22 & 1025 & 1025 & 0.068 \\
+knapPI & ILS & 22 & 9147 & 9147 & 0.203 \\
+       & GA  & 22 & 7907 & 9147 & 0.341 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Statistical Analysis}
+
+Wilcoxon signed-rank test ($\alpha = 0.05$).
+
+Null hypothesis: equal performance.
+
+Most instances (9/11) resulted in ties. Only 2 non-zero differences:
+
+\begin{itemize}
+\item f1: +2
+\item knapPI: +1240
+\end{itemize}
+
+$W^+ = 3$, $W^- = 0$, $W = 0$.
+
+Conclusion: insufficient sample size to reject null hypothesis.
+
+\section{Analysis}
+
+ILS consistently reaches high-quality solutions faster. The knapsack landscape favors greedy improvements, which ILS exploits efficiently. GA explores broadly but struggles with fine tuning and wastes time evaluating weak candidates early.
+
+ILS proves more efficient and reliable for these instances.
+
+\end{document}

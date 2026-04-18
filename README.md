@@ -1,8 +1,45 @@
-# COS314-Assignment-2
-Jeandre Opperman 23542773
+# Knapsack Solver
 
-How we compiled and ran our program. 
-1. cd into src
-2. We compiled all tha java files: javac *.java
-3. We created an executable jar file: jar cfe KnapsackSolver.jar Main *.class
-4. We ran the executable jar: java -jar KnapsackSolver.jar
+This project implements two metaheuristics for the 0/1 Knapsack Problem:
+- Genetic Algorithm (GA)
+- Iterated Local Search (ILS)
+
+## Compile
+
+From the src directory:
+
+make
+
+## Run
+
+From the src directory:
+
+make run
+
+You will be prompted to enter a seed value.
+
+## Clean
+
+Remove compiled classes:
+
+make clean
+
+## Data Setup
+
+If data is missing, run:
+
+make cleanData
+
+Note: requires 7z installed.
+
+## Structure
+
+- src/ contains all source files
+- executable/ contains compiled classes
+- Knapsack Instances.7z contains input data
+
+## Notes
+
+- Program is seeded for reproducibility
+- Runs without IDE
+- Designed to match assignment requirements
